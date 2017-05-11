@@ -3,7 +3,8 @@ var cheerio = require('cheerio');
 var sequelize = require('sequelize');
 var config = require('./config');
 var axios = require('axios');
-var safeEval = require('safe-eval');
+var fs = require('fs');
+var servantInfoList = []
 /**
  * 根据url和参数获取网页内容
  * @param {string}: url
@@ -13,28 +14,40 @@ const getHtml = async (href, number) => {
   console.log(`正在获取第${number}个英灵资料`);
   let pageData = '';
   let res = await axios.get(href + number)
-  getServantTable(res.data)
-}
-
-/**
- * 解析网页结构，获得从者数据表格element
- * @param {string}data 网页HTML数据
- */
-const getServantTable = (data) => {
-  let $ = cheerio.load(data);
+  let $ = cheerio.load(res.data);
   const servant = $('#page #row-move .col-md-9 .detailarticlelist')
                     .children().last().html().trim()
   let raw =  /^var datadetail \= \[(.+)\]\;\n\/\/console\.log\(datadetail/.exec(servant)[1];
   let info = JSON.parse(raw)
-  console.log(info);
+  servantInfoList.push(info)
+  return 
 }
 
-/**
- * 解析从者数据表格，获取基础数据（名称，星级，属性）
- * @param {Object} table 从者数据表格element
- */
-const getServantBaseInfo = (table) => {
 
+const writeFile = (info, savePath) => {
+  info = JSON.stringify(info)
+  fs.writeFile(savePath, info, 'utf8', (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('success')
+    }
+  });
 }
 
-let html = getHtml(config.target.servant.url, 2)
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const loadAll = async () => {
+  for (var i = 1; i < 168; i++) {
+    await timeout(3000)
+    await getHtml(config.target.servant.url, i)
+  }
+  let info = {}
+  info.servant = servantInfoList
+  info = JSON.stringify(info)
+  writeFile(info, 'servant.json')
+}
+
+loadAll()
