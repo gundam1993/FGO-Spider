@@ -9,8 +9,10 @@ module.exports = {
   },
   target: {
     servant: {
-      url:  'http://fgowiki.com/guide/petdetail/',
-      number: 165
+      url:  'http://fgowiki.com/guide/petdetail/'
+    },
+    craft: {
+      url: 'http://fgowiki.com/guide/equipdetail/'
     }
   }
 };
