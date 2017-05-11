@@ -32,7 +32,12 @@ var Material = sequelize.define('material', {
     allowNull: false,
     defaultValue: ''
   },
+  pic: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    defaultValue: ''
+  }
 }, {
-  timestamp: false
+  timestamp: true
 })
 module.exports = Material
