@@ -79,7 +79,7 @@ const loadAllServant = async () => {
 
 const loadCraftEssence = async (from, to, file) => {
   for (var i = from; i < to; i++) {
-    await timeout(3000)
+    await timeout(2000)
     await getCraftEssenceInfo(config.target.craft.url, i)
   }
   let info = {}
@@ -88,4 +88,4 @@ const loadCraftEssence = async (from, to, file) => {
   writeFile(info, file)
 }
 
-loadCraftEssence(101, 201, 'craftEssence2.json')
+loadCraftEssence(201, 579, 'craftEssence3.json')
