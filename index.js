@@ -88,4 +88,4 @@ const loadCraftEssence = async (from, to, file) => {
   writeFile(info, file)
 }
 
-loadCraftEssence(1, 101, 'craftEssence1.json')
+loadCraftEssence(101, 201, 'craftEssence2.json')
