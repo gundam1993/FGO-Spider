@@ -1,11 +1,11 @@
 var http = require('http');
 var cheerio = require('cheerio');
-var sequelize = require('sequelize');
 var config = require('./config');
 var axios = require('axios');
 var fs = require('fs');
 var servantInfoList = []
-var CraftEssence = []
+var craftEssence = []
+var material = []
 
 /**
  * 根据url和参数获取英灵内容
@@ -39,7 +39,24 @@ const getCraftEssenceInfo = async (href, number) => {
                     .children().last().html().trim()
   let raw =  /^var datadetail \= \[(.+)\]\;\nvar url/.exec(servant)[1];
   let info = JSON.parse(raw)
-  CraftEssence.push(info)
+  craftEssence.push(info)
+}
+
+/**
+ * 根据url和参数获取素材内容
+ * @param {string}: url
+ * @param {int}: number
+ */
+const getMaterialInfo = async (href, number) => {
+  console.log(`正在获取第${number}个素材资料`);
+  let pageData = '';
+  let res = await axios.get(href + number)
+  let $ = cheerio.load(res.data);
+  const servant = $('#page #row-move .col-md-9 .detailarticlelist')
+                    .children().last().html().trim()
+  let raw =  /^var datadetail \= \[(.+)\]\;\nvar url/.exec(servant)[1];
+  let info = JSON.parse(raw)
+  material.push(info)
 }
 
 /**
@@ -83,9 +100,20 @@ const loadCraftEssence = async (from, to, file) => {
     await getCraftEssenceInfo(config.target.craft.url, i)
   }
   let info = {}
-  info.CraftEssence = CraftEssence
+  info.craftEssence = craftEssence
   info = JSON.stringify(info)
   writeFile(info, file)
 }
 
-loadCraftEssence(201, 579, 'craftEssence3.json')
+const loadMaterial = async (from, to, file) => {
+  for (var i = from; i < to; i++) {
+    await timeout(2000)
+    await getMaterialInfo(config.target.material.url, i)
+  }
+  let info = {}
+  info.material = material
+  info = JSON.stringify(info)
+  writeFile(info, file)
+}
+
+loadMaterial(1, 75, 'material.json')

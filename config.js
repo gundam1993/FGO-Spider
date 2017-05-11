@@ -13,6 +13,9 @@ module.exports = {
     },
     craft: {
       url: 'http://fgowiki.com/guide/equipdetail/'
+    },
+    material: {
+      url: 'http://fgowiki.com/guide/materialdetail/'
     }
   }
 };
