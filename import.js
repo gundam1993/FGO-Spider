@@ -1,4 +1,5 @@
 const Material = require('./models/material.js');
+const Craft = require('./models/craft.js')
 var fs = require('fs');
 
 const importMaterial = async () => {
@@ -21,4 +22,37 @@ const importMaterial = async () => {
   }
 }
 
-importMaterial()
+const importCraft = async (file) => {
+  let raw = fs.readFileSync(file)
+  let info = JSON.parse(JSON.parse(raw))
+  let craft = info.CraftEssence
+  let len = craft.length
+  for (let i = 0; i < len; i++) {
+    let target = craft[i]
+    let c = await Craft.create({
+      id: target['ID'],
+      cname: target['NAME_CN'],
+      jname: target['NAME_JP'],
+      ename: target['NAME'],
+      star: target['STAR'],
+      baseHP: target['LV1_HP'],
+      baseATK: target['LV1_ATK'],
+      maxHP: target['LVMAX_HP'],
+      maxATK: target['LVMAX_ATK'],
+      cost: target['COST'],
+      illust: target['ILLUST'],
+      skillPic: target['ICO'],
+      baseSkill: target['SKILL_E'],
+      maxSkill: target['SKILLMAX_E'],
+      describe: target['INTRO'],
+      pic: target['PIC1']
+    })
+    console.log(c)
+  }
+}
+
+importCraft('craftEssence3.json')
+
+
+
+
