@@ -61,9 +61,9 @@ const importServant = async () => {
     let target = servants[i]
     let sv = await Servant.create({
       id: target['ID'],
-      cname: target['NAME_CN'],
+      cname: target['NAME'],
       jname: target['NAME_JP'],
-      ename: target['NAME'],
+      ename: target['NAME_EN'],
       star: target['STAR'],
       class: target['CLASS'],
       avatar: target['Avatar'],
