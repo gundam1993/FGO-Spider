@@ -179,7 +179,7 @@ const importServant = async () => {
       tdPointA: target['TdPointA'],
       tdPointB: target['TdPointB'],
       tdPointEX: target['TdPointEx'],
-      whereform: whereform['STAR']
+      whereform: target['whereform']
     })
     console.log(sv)
   }
