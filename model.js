@@ -15,4 +15,17 @@ Servant.hasMany(Skill, {foreignKey:'servant_id', targetKey:'id', as:'Skill'});
 Servant.hasMany(Break, {foreignKey:'servant_id', targetKey:'id', as:'Break'});
 Servant.hasMany(Upgrade, {foreignKey:'servant_id', targetKey:'id', as:'Upgrade'});
 
-sequelize.sync();
+// sequelize.sync();
+
+let Model = {
+  Craft,
+  Material,
+  Servant,
+  Talent,
+  Skill,
+  Treasure,
+  Break,
+  Upgrade
+}
+
+module.exports = Model
