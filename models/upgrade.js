@@ -1,21 +1,18 @@
 module.exports = function (DataTypes, DataTypes) {
-  return DataTypes.define('skill', {
+  return DataTypes.define('upgrade', {
     id: { type: DataTypes.BIGINT(11), primaryKey: true, autoIncrement: true, unique: true },
     servantId: { type: DataTypes.BIGINT(11), field: 'servant_id', allowNull: false },
-    name: { type: DataTypes.TEXT, defaultValue: '' },
-    pic: { type: DataTypes.TEXT, defaultValue: '' },
-    rank: { type: DataTypes.TEXT, defaultValue: '' },
-    cold: { type: DataTypes.BIGINT(11) },
-    effect: { type: DataTypes.TEXT, defaultValue: '' },
-    upGradeEffect: { type: DataTypes.TEXT, defaultValue: '' }
+    n: { type: DataTypes.BIGINT(11) },
+    num: { type: DataTypes.BIGINT(11) },
+    qp: { type: DataTypes.BIGINT(11) },
   }, {
     timestamp: true,
     underscored: true,
-    tableName: 'skill',
+    tableName: 'upgrade',
     charset: 'utf8',
     collate: 'utf8_general_ci',
     indexes: [{
-      name: 'skill_servantId',
+      name: 'upgrade_servantId',
       method: 'BTREE',
       fields: ['servant_id']
     }]
