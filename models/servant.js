@@ -1,5 +1,6 @@
 var sequelize = require('./database')
 const Sequelize = require('sequelize')
+const Treasure = require('./treasure');
 
 var Servant = sequelize.define('servant', {
   id: {
@@ -125,7 +126,7 @@ var Servant = sequelize.define('servant', {
     type: Sequelize.TEXT,
     defaultValue: ''
   },
-  treasure: {
+  treasureRank: {
     type: Sequelize.TEXT,
     defaultValue: ''
   },

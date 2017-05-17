@@ -25,5 +25,3 @@ const buildTreasure = async () => {
     }
   }
 };
-
-buildTreasure();
