@@ -1,49 +1,31 @@
-var sequelize = require('./database')
-const Sequelize = require('sequelize')
-const Servant = require('./servant')
-
-var Treasure = sequelize.define('treasure', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  servantId: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Servant,
-      key: 'id'
-    }
-  },
-  name: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  prop: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  rank: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  kind: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  effect: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  textArr: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  numArr: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  }
-}, {
-  timestamp: true
-})
-module.exports = Treasure
+module.exports = function (DataTypes, DataTypes) {
+  return DataTypes.define('treasure', {
+    id: { type: DataTypes.BIGINT(11), primaryKey: true, autoIncrement: true, unique: true },
+    servantId: {
+      type: DataTypes.BIGINT(11),
+      field: 'servant_id',
+      references: {
+        model: 'Servant',
+        key: 'id'
+      }
+    },
+    name: { type: DataTypes.TEXT, defaultValue: '' },
+    prop: { type: DataTypes.TEXT, defaultValue: '' },
+    rank: { type: DataTypes.TEXT, defaultValue: '' },
+    kind: { type: DataTypes.TEXT, defaultValue: '' },
+    effect: { type: DataTypes.TEXT, defaultValue: '' },
+    textArr: { type: DataTypes.TEXT, defaultValue: '' },
+    numArr: { type: DataTypes.TEXT, defaultValue: ''}
+  }, 
+  {
+    timestamp: true,
+    underscored: true,
+    tableName: 'treasures',
+    charset: 'utf8',
+    indexes: [{
+      name: 'treasures_servantId',
+      method: 'BTREE',
+     fields: ['servant_id']
+    }]
+  })
+}
