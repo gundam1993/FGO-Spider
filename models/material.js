@@ -11,7 +11,7 @@ module.exports = function (DataTypes, DataTypes) {
   {
     timestamp: true,
     underscored: true,
-    tableName: 'materials',
+    tableName: 'material',
     charset: 'utf8',
     collate: 'utf8_general_ci'
   })

@@ -20,7 +20,7 @@ module.exports = function (DataTypes, DataTypes) {
   {
     timestamp: true,
     underscored: true,
-    tableName: 'crafts',
+    tableName: 'craft',
     charset: 'utf8',
     collate: 'utf8_general_ci'
   })
