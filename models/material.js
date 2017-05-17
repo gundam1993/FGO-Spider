@@ -1,43 +1,18 @@
-var sequelize = require('./database')
-const Sequelize = require('sequelize')
-
-var Material = sequelize.define('material', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  name: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: ''
-  },
-  class: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: ''
-  },
-  box: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: ''
-  },
-  quality: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: ''
-  },
-  describe: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: ''
-  },
-  pic: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-    defaultValue: ''
-  }
-}, {
-  timestamp: true
-})
-module.exports = Material
+module.exports = function (DataTypes, DataTypes) {
+  return DataTypes.define('material', {
+    id: { type: DataTypes.BIGINT(11), primaryKey: true, autoIncrement: true, unique: true },
+    name: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    class: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    box: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    quality: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    describe: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    pic: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' }
+  }, 
+  {
+    timestamp: true,
+    underscored: true,
+    tableName: 'materials',
+    charset: 'utf8',
+    collate: 'utf8_general_ci'
+  })
+}

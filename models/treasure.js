@@ -22,6 +22,7 @@ module.exports = function (DataTypes, DataTypes) {
     underscored: true,
     tableName: 'treasures',
     charset: 'utf8',
+    collate: 'utf8_general_ci',
     indexes: [{
       name: 'treasures_servantId',
       method: 'BTREE',
