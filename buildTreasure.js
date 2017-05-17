@@ -1,0 +1,1 @@
+const Servant = require('./models/servant.js');

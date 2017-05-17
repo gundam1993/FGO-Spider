@@ -1,6 +1,6 @@
 const Material = require('./models/material.js');
-const Craft = require('./models/craft.js')
-const Servant = require('./models/servant.js')
+const Craft = require('./models/craft.js');
+const Servant = require('./models/servant.js');
 var fs = require('fs');
 
 const importMaterial = async () => {
@@ -21,7 +21,7 @@ const importMaterial = async () => {
     })
     console.log(ma)
   }
-}
+};
 
 const importCraft = async (file) => {
   let raw = fs.readFileSync(file)
@@ -50,7 +50,7 @@ const importCraft = async (file) => {
     })
     console.log(c)
   }
-}
+};
 
 const importServant = async () => {
   let raw = fs.readFileSync('servant.json')
@@ -183,7 +183,4 @@ const importServant = async () => {
     })
     console.log(sv)
   }
-}
-
-importServant()
-
+};
