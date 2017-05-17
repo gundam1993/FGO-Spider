@@ -1,67 +1,27 @@
-var sequelize = require('./database')
-const Sequelize = require('sequelize')
-
-var Craft = sequelize.define('craft', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  cname: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  jname: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  ename: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  star: {
-    type: Sequelize.INTEGER
-  },
-  baseHP: {
-    type: Sequelize.INTEGER
-  },
-  baseATK: {
-    type: Sequelize.INTEGER
-  },
-  maxHP: {
-    type: Sequelize.INTEGER
-  },
-  maxATK: {
-    type: Sequelize.INTEGER
-  },
-  cost: {
-    type: Sequelize.INTEGER
-  },
-  illust: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  skillPic: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  baseSkill: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  maxSkill: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  describe: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  },
-  pic: {
-    type: Sequelize.TEXT,
-    defaultValue: ''
-  }
-}, {
-  timestamp: true
-})
-module.exports = Craft
+module.exports = function (DataTypes, DataTypes) {
+  return DataTypes.define('craft', {
+    id: { type: DataTypes.BIGINT(11), primaryKey: true, autoIncrement: true, unique: true },
+    cname: { type: DataTypes.TEXT, defaultValue: '' },
+    jname: { type: DataTypes.TEXT, defaultValue: '' },
+    ename: { type: DataTypes.TEXT, defaultValue: '' },
+    star: { type: DataTypes.INTEGER },
+    baseHP: { type: DataTypes.INTEGER },
+    baseATK: { type: DataTypes.INTEGER },
+    maxHP: { type: DataTypes.INTEGER },
+    maxATK: { type: DataTypes.INTEGER },
+    cost: { type: DataTypes.INTEGER },
+    illust: { type: DataTypes.TEXT, defaultValue: '' },
+    skillPic: { type: DataTypes.TEXT, defaultValue: '' },
+    baseSkill: { type: DataTypes.TEXT, defaultValue: '' },
+    maxSkill: { type: DataTypes.TEXT, defaultValue: '' },
+    describe: { type: DataTypes.TEXT, defaultValue: '' },
+    pic: { type: DataTypes.TEXT, defaultValue: '' }
+  }, 
+  {
+    timestamp: true,
+    underscored: true,
+    tableName: 'crafts',
+    charset: 'utf8',
+    collate: 'utf8_general_ci'
+  })
+}
