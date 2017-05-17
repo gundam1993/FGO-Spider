@@ -1,5 +1,5 @@
-module.exports = function (DataTypes, DataTypes) {
-  return DataTypes.define('skill', {
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define('skill', {
     id: { type: DataTypes.BIGINT(11), primaryKey: true, autoIncrement: true, unique: true },
     servantId: { type: DataTypes.BIGINT(11), field: 'servant_id', allowNull: false },
     name: { type: DataTypes.TEXT, defaultValue: '' },

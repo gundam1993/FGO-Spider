@@ -1,5 +1,5 @@
-module.exports = function (DataTypes, DataTypes) {
-  return DataTypes.define('craft', {
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define('craft', {
     id: { type: DataTypes.BIGINT(11), primaryKey: true, autoIncrement: true, unique: true },
     cname: { type: DataTypes.TEXT, defaultValue: '' },
     jname: { type: DataTypes.TEXT, defaultValue: '' },
